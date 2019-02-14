@@ -30,11 +30,7 @@ export default class USBHintProducer extends DiscoveryHintProducer {
 
     this.usb = options.USB
 
-    console.log('options.attachmentDelay', options.attachmentDelay)
-
     this.attachmentDelay = options.attachmentDelay || 1500
-
-    console.log('this.attachmentDelay', this.attachmentDelay)
 
     this.attachmentDetection = this.attachmentDetection.bind(this)
     this.detachmentDetection = this.detachmentDetection.bind(this)
