@@ -48,7 +48,6 @@
   "scripts": {
     "prepack": "npm run build && silversmith prepack",
     "build": "rollup -c",
-    "postpack": "silversmith postpack",
-    "test": "export TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\"}' && mocha --compilers ts:ts-node/register && export TS_NODE_COMPILER_OPTIONS=\"\""
+    "postpack": "silversmith postpack"
   }
 }
