@@ -47,7 +47,7 @@
     "usb": "^1.5.0"
   },
   "scripts": {
-    "prepack": "npm run build && silversmith prepack",
+    "prepack": "silversmith prepack",
     "build": "rollup -c",
     "postpack": "silversmith postpack"
   }
