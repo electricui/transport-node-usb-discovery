@@ -18,7 +18,7 @@ interface USBDevice {
 
 export default class USBHintProducer extends DiscoveryHintProducer {
   transportKey: string
-  usb: any // USB
+  usb: any
   options: USBHintProducerOptions
   attachmentDelay: number
 
