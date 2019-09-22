@@ -45,7 +45,7 @@
   },
   "scripts": {
     "prepack": "silversmith prepack",
-    "build": "rollup -c",
+    "build": "rm -rf ./lib && rollup -c",
     "postpack": "silversmith postpack"
   }
 }
