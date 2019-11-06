@@ -1,8 +1,5 @@
 import { DiscoveryHintProducer, Hint } from '@electricui/core'
 
-/**
- * The baudrate is optional, as they may use a transformer to add several baudRate options if they wish
- */
 interface USBHintProducerOptions {
   transportKey?: string
   USB: any
