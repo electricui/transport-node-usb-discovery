@@ -27,7 +27,7 @@ export default class USBHintProducer extends DiscoveryHintProducer {
 
     this.usb = options.USB
 
-    this.attachmentDelay = options.attachmentDelay || 1500
+    this.attachmentDelay = options.attachmentDelay || 750
 
     this.attachmentDetection = this.attachmentDetection.bind(this)
     this.detachmentDetection = this.detachmentDetection.bind(this)
@@ -53,8 +53,6 @@ export default class USBHintProducer extends DiscoveryHintProducer {
       vendorId: idVendor,
       productId: idProduct,
     })
-
-    console.log('attached, delaying: ', this.attachmentDelay)
 
     // Let the UI know we've found the port after the attachment delay
     setTimeout(() => this.foundHint(hint), this.attachmentDelay)
