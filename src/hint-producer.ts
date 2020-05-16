@@ -1,8 +1,10 @@
 import { DiscoveryHintProducer, Hint } from '@electricui/core'
 
+import USB from '@electricui/node-usb'
+
 interface USBHintProducerOptions {
   transportKey?: string
-  USB: any
+  USB: typeof USB
   attachmentDelay?: number
 }
 
@@ -15,7 +17,7 @@ interface USBDevice {
 
 export default class USBHintProducer extends DiscoveryHintProducer {
   transportKey: string
-  usb: any
+  usb: typeof USB
   options: USBHintProducerOptions
   attachmentDelay: number
 

@@ -23,6 +23,7 @@
     "@electricui/build-rollup-config": "^0.7.10",
     "@electricui/jest-config": "^0.7.7",
     "@electricui/protocol-binary": "^0.7.14-prerelease.8",
+    "@electricui/node-usb": "^0.7.0",
     "@types/chai": "^4.1.7",
     "@types/chai-subset": "^1.3.2",
     "@types/debug": "^4.1.1",
@@ -41,6 +42,9 @@
     "tslib": "^1.10.0",
     "typescript": "^3.8.3",
     "usb": "^1.5.0"
+  },
+  "peerDependencies": {
+    "@electricui/node-usb": "^0.7.0"
   },
   "scripts": {
     "prepack": "silversmith prepack",
