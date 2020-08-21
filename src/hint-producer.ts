@@ -5,7 +5,6 @@ import USB from '@electricui/node-usb'
 interface USBHintProducerOptions {
   transportKey?: string
   USB: typeof USB
-  attachmentDelay?: number
 }
 
 interface USBDevice {
@@ -19,7 +18,6 @@ export default class USBHintProducer extends DiscoveryHintProducer {
   transportKey: string
   usb: typeof USB
   options: USBHintProducerOptions
-  attachmentDelay: number
 
   constructor(options: USBHintProducerOptions) {
     super()
@@ -28,8 +26,6 @@ export default class USBHintProducer extends DiscoveryHintProducer {
     this.options = options
 
     this.usb = options.USB
-
-    this.attachmentDelay = options.attachmentDelay || 750
 
     this.attachmentDetection = this.attachmentDetection.bind(this)
     this.detachmentDetection = this.detachmentDetection.bind(this)
@@ -51,13 +47,15 @@ export default class USBHintProducer extends DiscoveryHintProducer {
 
     hint.setAvailabilityHint()
 
+    // Node Serialport uses hex representations of these, so lets do the same thing.
     hint.setIdentification({
       vendorId: idVendor,
       productId: idProduct,
     })
 
-    // Let the UI know we've found the port after the attachment delay
-    setTimeout(() => this.foundHint(hint), this.attachmentDelay)
+    // Send up our hint immediately, the transformer will poll until it finds the
+    // correct serialport
+    this.foundHint(hint)
   }
 
   detachmentDetection = (usbDevice: USBDevice) => {
