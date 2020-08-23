@@ -1,10 +1,15 @@
-import { DiscoveryHintProducer, Hint } from '@electricui/core'
+import {
+  CancellationToken,
+  DiscoveryHintProducer,
+  Hint,
+} from '@electricui/core'
 
 import USB from '@electricui/node-usb'
 
 interface USBHintProducerOptions {
   transportKey?: string
   USB: typeof USB
+  connectionPollingTime?: number
 }
 
 interface USBDevice {
@@ -18,6 +23,7 @@ export default class USBHintProducer extends DiscoveryHintProducer {
   transportKey: string
   usb: typeof USB
   options: USBHintProducerOptions
+  connectionPollingTime: number
 
   constructor(options: USBHintProducerOptions) {
     super()
@@ -26,6 +32,7 @@ export default class USBHintProducer extends DiscoveryHintProducer {
     this.options = options
 
     this.usb = options.USB
+    this.connectionPollingTime = options.connectionPollingTime ?? 5_000
 
     this.attachmentDetection = this.attachmentDetection.bind(this)
     this.detachmentDetection = this.detachmentDetection.bind(this)
@@ -55,7 +62,12 @@ export default class USBHintProducer extends DiscoveryHintProducer {
 
     // Send up our hint immediately, the transformer will poll until it finds the
     // correct serialport
-    this.foundHint(hint)
+
+    // Poll for say 5 seconds
+    const cancellationToken = new CancellationToken()
+    cancellationToken.deadline(this.connectionPollingTime)
+
+    this.foundHint(hint, cancellationToken)
   }
 
   detachmentDetection = (usbDevice: USBDevice) => {
@@ -71,6 +83,9 @@ export default class USBHintProducer extends DiscoveryHintProducer {
     })
 
     // Let the UI know we've found the port
-    this.foundHint(hint)
+    const cancellationToken = new CancellationToken()
+    cancellationToken.deadline(this.connectionPollingTime)
+
+    this.foundHint(hint, cancellationToken)
   }
 }
