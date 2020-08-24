@@ -64,10 +64,16 @@ export default class USBHintProducer extends DiscoveryHintProducer {
     // correct serialport
 
     // Poll for say 5 seconds
-    const cancellationToken = new CancellationToken()
+    const cancellationToken = new CancellationToken(
+      'usb attachment detection hint',
+    )
     cancellationToken.deadline(this.connectionPollingTime)
 
-    this.foundHint(hint, cancellationToken)
+    this.foundHint(hint, cancellationToken).catch(err => {
+      if (!cancellationToken.caused(err)) {
+        console.warn("Couldn't pass USB attachment hint up")
+      }
+    })
   }
 
   detachmentDetection = (usbDevice: USBDevice) => {
@@ -83,9 +89,15 @@ export default class USBHintProducer extends DiscoveryHintProducer {
     })
 
     // Let the UI know we've found the port
-    const cancellationToken = new CancellationToken()
+    const cancellationToken = new CancellationToken(
+      'usb detachment detection hint',
+    )
     cancellationToken.deadline(this.connectionPollingTime)
 
-    this.foundHint(hint, cancellationToken)
+    this.foundHint(hint, cancellationToken).catch(err => {
+      if (!cancellationToken.caused(err)) {
+        console.warn("Couldn't pass USB detachment hint up")
+      }
+    })
   }
 }
