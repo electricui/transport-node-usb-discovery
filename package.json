@@ -1,6 +1,6 @@
 {
   "name": "@electricui/transport-node-usb-discovery",
-  "version": "0.7.20-prerelease.2",
+  "version": "0.7.20-prerelease.3",
   "description": "ElectricUI USB Discovery Producer and Transformer",
   "electricui-dev": true,
   "author": "Electric UI <support@electricui.com> (https://electricui.com)",
@@ -14,7 +14,7 @@
     "manifest.json"
   ],
   "dependencies": {
-    "@electricui/core": "^0.7.20-prerelease.2",
+    "@electricui/core": "^0.7.20-prerelease.3",
     "@electricui/protocol-binary-constants": "^0.7.17",
     "bluebird": "^3.5.3",
     "debug": "^4.1.1"
@@ -23,7 +23,7 @@
     "@electricui/build-rollup-config": "^0.7.17",
     "@electricui/jest-config": "^0.7.17",
     "@electricui/node-usb": "^0.7.15",
-    "@electricui/protocol-binary": "^0.7.20-prerelease.2",
+    "@electricui/protocol-binary": "^0.7.20-prerelease.3",
     "@types/chai": "^4.1.7",
     "@types/chai-subset": "^1.3.2",
     "@types/debug": "^4.1.1",
