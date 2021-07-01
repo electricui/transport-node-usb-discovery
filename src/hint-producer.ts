@@ -1,8 +1,5 @@
-import {
-  CancellationToken,
-  DiscoveryHintProducer,
-  Hint,
-} from '@electricui/core'
+import { DiscoveryHintProducer, Hint } from '@electricui/core'
+import { CancellationToken } from '@electricui/async-utilities'
 
 import USB from '@electricui/node-usb'
 
@@ -64,9 +61,7 @@ export default class USBHintProducer extends DiscoveryHintProducer {
     // correct serialport
 
     // Poll for say 5 seconds
-    const cancellationToken = new CancellationToken(
-      'usb attachment detection hint',
-    )
+    const cancellationToken = new CancellationToken('usb attachment detection hint')
     cancellationToken.deadline(this.connectionPollingTime)
 
     this.foundHint(hint, cancellationToken).catch(err => {
@@ -89,9 +84,7 @@ export default class USBHintProducer extends DiscoveryHintProducer {
     })
 
     // Let the UI know we've found the port
-    const cancellationToken = new CancellationToken(
-      'usb detachment detection hint',
-    )
+    const cancellationToken = new CancellationToken('usb detachment detection hint')
     cancellationToken.deadline(this.connectionPollingTime)
 
     this.foundHint(hint, cancellationToken).catch(err => {
