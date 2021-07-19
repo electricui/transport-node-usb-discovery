@@ -27,7 +27,6 @@
   "devDependencies": {
     "@electricui/build-rollup-config": "workspace:*",
     "@electricui/jest-config": "workspace:*",
-    "@electricui/node-usb": "workspace:*",
     "@electricui/protocol-binary": "workspace:*",
     "@types/chai": "^4.1.7",
     "@types/chai-subset": "^1.3.2",
@@ -35,6 +34,7 @@
     "@types/mocha": "^5.2.6",
     "@types/node": "^14.14.10",
     "@types/sinon": "^7.0.6",
+    "@types/usb": "^1.5.3",
     "chai": "^4.2.0",
     "chai-subset": "^1.6.0",
     "mocha": "^5.2.0",
@@ -44,10 +44,11 @@
     "sinon": "^7.2.3",
     "ts-node": "^9.0.0",
     "tslib": "^2.0.3",
-    "typescript": "4.3.2"
+    "typescript": "4.3.2",
+    "usb": "1.7.1"
   },
   "peerDependencies": {
-    "@electricui/node-usb": "*"
+    "usb": "1.7.1"
   },
   "scripts": {
     "prepack": "silversmith prepack",

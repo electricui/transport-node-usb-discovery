@@ -1,7 +1,7 @@
 import { DiscoveryHintProducer, Hint } from '@electricui/core'
 import { CancellationToken } from '@electricui/async-utilities'
 
-import USB from '@electricui/node-usb'
+import USB from 'usb'
 
 interface USBHintProducerOptions {
   transportKey?: string
