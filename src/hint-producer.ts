@@ -25,6 +25,10 @@ export default class USBHintProducer extends DiscoveryHintProducer {
   constructor(options: USBHintProducerOptions) {
     super()
 
+    if (!options.USB) {
+      throw new Error('USB must be passed to transport-node-usb-discovery.')
+    }
+
     this.transportKey = options.transportKey || 'usb'
     this.options = options
 
