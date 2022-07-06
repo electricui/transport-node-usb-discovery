@@ -1,11 +1,11 @@
 import { DiscoveryHintProducer, Hint } from '@electricui/core'
 import { CancellationToken } from '@electricui/async-utilities'
 
-import USB from 'usb'
+import type { usb } from 'usb'
 
 interface USBHintProducerOptions {
   transportKey?: string
-  USB: typeof USB
+  usb: typeof usb
   connectionPollingTime?: number
 }
 
@@ -18,21 +18,21 @@ interface USBDevice {
 
 export default class USBHintProducer extends DiscoveryHintProducer {
   transportKey: string
-  usb: typeof USB
+  usb: typeof usb
   options: USBHintProducerOptions
   connectionPollingTime: number
 
   constructor(options: USBHintProducerOptions) {
     super()
 
-    if (!options.USB) {
-      throw new Error('USB must be passed to transport-node-usb-discovery.')
+    if (!options.usb) {
+      throw new Error('usb must be passed to transport-node-usb-discovery.')
     }
 
     this.transportKey = options.transportKey || 'usb'
     this.options = options
 
-    this.usb = options.USB
+    this.usb = options.usb
     this.connectionPollingTime = options.connectionPollingTime ?? 5_000
 
     this.attachmentDetection = this.attachmentDetection.bind(this)
